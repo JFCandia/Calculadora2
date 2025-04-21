@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <title>Calculadora</title>
+</head>
+<body>
+    <h1>Calculadora Python -Flask</h1>
+    <form method="POST">
+        <input type="number" name="num1" placeholder="Ingresa Primer Numero" required>
+        <input type="number" name="num2" placeholder="Ingresa Segundo Numero" required>
+        <select name="operation">
+            <option value="add">Sumar</option>
+            <option value="subtract">Restar</option>
+            <option value="multiply">Multiplicar</option>
+            <option value="divide">Dividir</option>
+        </select>
+        <button type="submit">Calcular</button>
+    </form>
+    {% if result %}
+        <h2>Resultado: {{ result }}</h2>
+    {% endif %}
+    
+</body>
