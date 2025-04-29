@@ -1,9 +1,8 @@
 /* General */
 body {
-    background: linear-gradient(135deg, #4a90e2, #50e3c2);
-    color: white;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background: linear-gradient(135deg, #3b82f6, #06b6d4); /* Azul y cian más vibrantes */
+    color: #f9fafb; /* Blanco más suave */
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -11,50 +10,119 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    overflow: hidden;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 /* Formulario */
 form {
-    background-color: #fff;
-    padding: 35px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    width: 340px;
     text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    animation: formPulse 3s infinite; /* Animación de pulso */
+}
+
+form:hover {
+    transform: scale(1.05); /* Agrandamiento suave */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
+    background-color: #f0f9ff; /* Azul claro */
+}
+
+/* Animación de pulso para el formulario */
+@keyframes formPulse {
+    0%, 100% {
+        transform: scale(1); /* Tamaño normal */
+        background-color: #ffffff; /* Blanco */
+    }
+    50% {
+        transform: scale(1.02); /* Ligero agrandamiento */
+        background-color: #e0f7fa; /* Azul muy claro */
+    }
 }
 
 input, select, button {
-    margin: 10px 0;
-    padding: 10px;
+    margin: 12px 0;
+    padding: 14px;
     width: 100%;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db; /* Gris claro */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input:focus, select:focus {
+    border-color: #3b82f6; /* Azul vibrante */
+    outline: none;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
 }
 
 /* Botón */
 button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #10b981; /* Verde esmeralda */
+    color: #ffffff;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    animation: buttonPulse 2s infinite; /* Animación de pulso */
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #059669; /* Verde más oscuro */
+    transform: translateY(-3px) scale(1.05); /* Movimiento hacia arriba y agrandamiento */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
+
+button:active {
+    transform: translateY(0) scale(1); /* Regresa a su tamaño original */
+    box-shadow: none;
+}
+
+/* Animación de pulso */
+@keyframes buttonPulse {
+    0%, 100% {
+        transform: scale(1); /* Tamaño normal */
+        background-color: #10b981; /* Verde esmeralda */
+    }
+    50% {
+        transform: scale(1.1); /* 10% más grande */
+        background-color: #34d399; /* Verde más claro */
+    }
+}
+
+/* Animación de colores al hacer clic */
+button:focus {
+    animation: buttonColorChange 1s ease-in-out;
+}
+
+@keyframes buttonColorChange {
+    0% { background-color: #10b981; }
+    25% { background-color: #059669; }
+    50% { background-color: #34d399; }
+    75% { background-color: #10b981; }
+    100% { background-color: #059669; }
+}
+
 
 /* Resultado */
 h2 {
-    font-size: 20px;
-    color: #333;
+    font-size: 24px;
+    color: #1f2937; /* Gris oscuro */
     text-align: center;
+    margin-top: 20px;
 }
 
+/* Animación */
 form {
     opacity: 0;
     transform: translateY(-20px);
-    animation: fadeIn 0.5s ease-in-out forwards;
+    animation: fadeIn 0.6s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
@@ -64,9 +132,77 @@ form {
     }
 }
 
+/* Modo oscuro */
 .dark-mode {
-    background-color: black;
-    color: white;
+    background-color: #1e293b; /* Azul oscuro */
+    color: #f1f5f9; /* Blanco suave */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.dark-mode form {
+    background-color: #334155; /* Azul grisáceo */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode input, .dark-mode select, .dark-mode button {
+    background-color: #475569; /* Azul más oscuro */
+    color: #e2e8f0; /* Blanco grisáceo */
+    border: 1px solid #64748b; /* Gris azulado */
+}
+
+.dark-mode input:focus, .dark-mode select:focus {
+    border-color: #06b6d4; /* Cian vibrante */
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
+}
+
+.dark-mode button {
+    background-color: #06b6d4; /* Cian vibrante */
+}
+
+.dark-mode button:hover {
+    background-color: #0891b2; /* Cian más oscuro */
+}
+
+/* Define una animación que cambia los colores del texto en diferentes */
+@keyframes colorChange {
+    0% { color: #4CAF50; }
+    25% { color: #FF5722; }
+    50% { color: #3F51B5; }
+    75% { color: #FFC107; }
+    100% { color: #4CAF50; }
+}
+
+/* Hace que el título se mueva horizontalmente */
+@keyframes move {  
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+}
+
+@keyframes growShrinkColor {
+    0%, 100% {
+        transform: scale(1); /* Tamaño normal */
+        color: #4CAF50; /* Verde */
+    }
+    25% {
+        transform: scale(1.3); /* 30% más grande */
+        color: #FF5722; /* Naranja */
+    }
+    50% {
+        transform: scale(1.5); /* 50% más grande */
+        color: #3F51B5; /* Azul */
+    }
+    75% {
+        transform: scale(1.3); /* Regresa al 30% más grande */
+        color: #FFC107; /* Amarillo */
+    }
+}
+
+h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 3em;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: growShrinkColor 3s infinite; /* Animación de 3 segundos infinita */
 }
 
 

@@ -1,27 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        function updateFields() {
+            const operation = document.querySelector('select[name="operation"]').value;
+            const num2Field = document.querySelector('input[name="num2"]');
+            
+            // Deshabilitar num2 para factorial y raíz cuadrada
+            if (operation === 'factorial' || operation === 'sqrt') {
+                num2Field.disabled = true;
+                num2Field.value = ''; // Limpiar valor del campo
+            } else {
+                num2Field.disabled = false;
+            }
+        }
+    </script>
     <title>Calculadora</title>
 </head>
 <body>
-    <h1>Calculadora Python -Flask</h1>
+    <h1>Calculadora</h1> <!--PYTHON-FLASK-->
     <form method="POST">
-        <input type="number" name="num1" placeholder="Ingresa Primer Numero" required>
-        <input type="number" name="num2" placeholder="Ingresa Segundo Numero" required>
-        <select name="operation">
+        <input type="number" name="num1" placeholder="Ingresa Primer Número" required>
+        <input type="number" name="num2" placeholder="Ingresa Segundo Número (opcional)" required>
+        <select name="operation" onchange="updateFields()">
             <option value="add">Sumar</option>
             <option value="subtract">Restar</option>
             <option value="multiply">Multiplicar</option>
             <option value="divide">Dividir</option>
+            <option value="modulo">Módulo</option> <!--Calcula el residuo de una división. Maneja errores como división por cero.-->
+            <option value="power">Exponenciación</option> <!-- Eleva un número a la potencia de otro usando ** en Python.   Ejemplo: 3 ^ 2 = 9.-->
+            <option value="sqrt">Raíz Cuadrada</option> <!-- Se calcula la raíz cuadrada de num1, Incluye manejo de errores para números negativos-->
+            <option value="factorial">Factorial</option> <!--Se calcula el factorial de num1, Maneja solo números enteros no negativos.-->
         </select>
         <button type="submit">Calcular</button>
     </form>
-    {% if result %}
+
+    <!--{% if result %}
         <h2>Resultado: {{ result }}</h2>
-    {% endif %}
-    
-</body>
+    {% endif %}-->
+
+    <h3>Historial de operaciones:</h3>
+<ul>
+    {% for item in history %}
+        <li>{{ item }}</li> <!-- Renderiza cada operación como una sola línea -->
+    {% endfor %}
+</ul>
+
+
+
+
+
+<!--Calcula el residuo de una división. Maneja errores como división por cero.-->
+<!-- Eleva un número a la potencia de otro usando ** en Python.   Ejemplo: 3 ^ 2 = 9.-->
+ <!-- Se calcula la raíz cuadrada de num1, Incluye manejo de errores para números negativos-->
+  <!--Se calcula el factorial de num1, Maneja solo números enteros no negativos.-->
